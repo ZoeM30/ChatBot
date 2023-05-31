@@ -64,7 +64,7 @@ module.exports = class ShwarmaOrder extends Order {
         if (sInput.toLowerCase() != "no") {
           this.sSecondItem = sInput;
           this.stateCur = OrderState.SECONDSIZE;
-          aReturn.push("What size would you like?");
+          aReturn.push("What size would you like?Small, medium, large?");
         } else {
           this.stateCur = OrderState.SPRINGROLLS;
           aReturn.push(
@@ -104,10 +104,14 @@ module.exports = class ShwarmaOrder extends Order {
         }
         aReturn.push("Thank-you for your order of");
         aReturn.push(`${this.sSize} ${this.sItem} with ${this.sToppings}`);
+
         if (this.sSecondItem) {
           aReturn.push(
             `${this.sSecondSize} ${this.sSecondItem} with ${this.sSecondTopping}`
           );
+        }
+        if (this.springroll) {
+          aReturn.push(`${this.springroll} spring roll`);
         }
         if (this.sDrinks) {
           aReturn.push(this.sDrinks);
