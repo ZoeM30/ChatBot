@@ -56,7 +56,9 @@ module.exports = class ShwarmaOrder extends Order {
         this.stateCur = OrderState.SECONDITEM;
         this.sToppings = sInput;
         this.total += price.toppings;
-        aReturn.push("Would you like another item?Pho, Rice, Soup?");
+        aReturn.push(
+          "Would you like another item?Pho, Rice, Soup? Or type no to finish order."
+        );
         break;
       case OrderState.SECONDITEM:
         if (sInput.toLowerCase() != "no") {
@@ -66,7 +68,7 @@ module.exports = class ShwarmaOrder extends Order {
         } else {
           this.stateCur = OrderState.SPRINGROLLS;
           aReturn.push(
-            "Would you like a spring roll with your order?Vegetable, shrimp, tofu?"
+            "Would you like a spring roll with your order?Vegetable, shrimp, tofu?Or type no to finish order."
           );
         }
         break;
@@ -81,7 +83,7 @@ module.exports = class ShwarmaOrder extends Order {
         this.sSecondTopping = sInput;
         this.total += price.toppings;
         aReturn.push(
-          "Would you like a spring roll with your order?Vegetable, shrimp, tofu?"
+          "Would you like a spring roll with your order?Vegetable, shrimp, tofu?Or type no to finish order."
         );
         break;
       case OrderState.SPRINGROLLS:
@@ -90,7 +92,9 @@ module.exports = class ShwarmaOrder extends Order {
           this.springroll = sInput;
           this.total += price.springroll[sInput];
         }
-        aReturn.push("Would you like a drink with your order?");
+        aReturn.push(
+          "Would you like a drink with your order?Or type no to finish order."
+        );
         break;
       case OrderState.DRINKS:
         this.isDone(true);
